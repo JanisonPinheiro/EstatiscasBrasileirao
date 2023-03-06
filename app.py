@@ -4,7 +4,7 @@
 #app = dash.Dash(external_stylesheets=[dbc.themes.CYBORG])
 
 #app.scripts.config.serve_locally = True
-server = app.server
+#server = app.server
 
 import plotly.express as px
 from dash import html, dcc
