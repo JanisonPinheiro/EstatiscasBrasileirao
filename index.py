@@ -7,7 +7,7 @@ from chutes import *
 from faltas import *
 from gols_pro_contra import *
 import dash
-
+import dash_bootstrap_components as dbc
 
 
 
