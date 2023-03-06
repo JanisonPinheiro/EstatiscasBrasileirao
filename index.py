@@ -6,6 +6,7 @@ from dash.dependencies import Input, Output
 from chutes import *
 from faltas import *
 from gols_pro_contra import *
+from app import app
 import dash
 import dash_bootstrap_components as dbc
 
