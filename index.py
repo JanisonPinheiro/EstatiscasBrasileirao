@@ -138,7 +138,7 @@ app.layout = html.Div([
     ])
 ])
 
-app.layout = layout()
+
 @app.callback(Output('grafico', 'figure'),
               [Input('dropdown', 'value'),
                Input('year', 'value'),
