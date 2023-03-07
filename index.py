@@ -1,8 +1,9 @@
 import plotly.express as px
+
 from dash import html, dcc
 from dash.dependencies import Input, Output
 
-from app import *
+from my_app import *
 from chutes import *
 from faltas import *
 from gols_pro_contra import *
@@ -55,7 +56,7 @@ layout_sidebar = dbc.Card(
     ], style=style_sidebar
 )
 
-app.layout = html.Div([
+my_app.layout = html.Div([
     dbc.Row([
         dbc.Col(layout_sidebar, md=2),
         dbc.Col([
@@ -139,7 +140,7 @@ app.layout = html.Div([
 ])
 
 
-@app.callback(Output('grafico', 'figure'),
+@my_app.callback(Output('grafico', 'figure'),
               [Input('dropdown', 'value'),
                Input('year', 'value'),
                Input('clubes', 'value')
@@ -154,4 +155,4 @@ def update_figure(value, year, clubes):
 
 
 if __name__ == "__main__":
-    app.run_server(port=8050, debug=True)
+    my_app.run_server(port=8050, debug=False)

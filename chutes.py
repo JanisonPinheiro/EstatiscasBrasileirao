@@ -46,7 +46,7 @@ def update_graph(year, clubes):
         dfr = tratar_dataframe(dfa)
 
         x_values = dfa['rodata']
-    print(dfr)
+
     fig = go.Figure()
     fig.add_trace(
         go.Bar(x=x_values,
