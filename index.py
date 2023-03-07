@@ -2,6 +2,8 @@ import plotly.express as px
 
 from dash import html, dcc
 from dash.dependencies import Input, Output
+import dash
+import dash_bootstrap_components as dbc
 
 from my_app import *
 from chutes import *
@@ -141,10 +143,10 @@ my_app.layout = html.Div([
 
 
 @my_app.callback(Output('grafico', 'figure'),
-              [Input('dropdown', 'value'),
-               Input('year', 'value'),
-               Input('clubes', 'value')
-               ])
+                 [Input('dropdown', 'value'),
+                  Input('year', 'value'),
+                  Input('clubes', 'value')
+                  ])
 def update_figure(value, year, clubes):
     if value == 'chutegol_fora':
         return update_graph(year, clubes)
@@ -154,5 +156,11 @@ def update_figure(value, year, clubes):
         return update_graph_gols(year, clubes)
 
 
-if __name__ == "__main__":
-    my_app.run_server(port=8050, debug=False)
+def create_app():
+    my_app = dash.Dash(external_stylesheets=[dbc.themes.CYBORG])
+    my_app.scripts.config.serve_locally = True
+    server = my_app.server
+    return server
+
+
+app = create_app()
