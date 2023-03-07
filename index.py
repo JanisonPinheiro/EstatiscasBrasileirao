@@ -2,7 +2,7 @@ import plotly.express as px
 from dash import html, dcc
 from dash.dependencies import Input, Output
 
-
+from Flask import Flask
 from chutes import *
 from faltas import *
 from gols_pro_contra import *
@@ -11,7 +11,7 @@ import dash
 import dash_bootstrap_components as dbc
 
 
-
+app = Flask(__name__)
 px.defaults.template = 'plotly_dark'
 
 fig = go.Figure()
