@@ -10,7 +10,7 @@ def update_graph_goals(year, clubs):
     away_goals_conceded = 0
     home_goals_conceded = 0
 
-    df_goals = pd.read_csv('Data/campeonato-brasileiro-full.csv')
+    df_goals = pd.read_csv('Data/campeonato-brasileiro-full.csv') #
 
     if year == '2017':
         df_filtered_by_year = df_goals.loc[
