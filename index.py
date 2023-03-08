@@ -64,7 +64,7 @@ def create_app():
         dbc.Row([
             dbc.Col(layout_sidebar, md=2),
             dbc.Col([
-                html.H5('Estatísticas dos últimos 5 anos da Séria A do Campeonato Brasileiro de Futebol'),
+                html.H5('Estatísticas dos últimos 5 anos da Série A do Campeonato Brasileiro de Futebol'),
                 html.Div('Escolha uma opção de ano:'),
                 dcc.Dropdown(id='dropdown',
                              options=[{'label': 'Chute no Gol vs Chutes', 'value': 'shots'},
@@ -92,7 +92,7 @@ def create_app():
                                inputStyle={'margin-right': '5px'},
 
                                style={'display': 'flex', 'justify-content': 'flex-start'}),
-                html.Hr(),  # cria um espaço
+                html.Hr(), 
                 dcc.Graph(
                     id='grafico',
                     figure=fig,
