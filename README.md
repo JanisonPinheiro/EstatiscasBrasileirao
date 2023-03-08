@@ -12,4 +12,6 @@ In the "Faltas vs Cartões" graph, the data is shown by rounds. The blue column 
 
 Lastly, in the "Gols feitos vs Gols tomados" graph, in the "Gols pró" pie chart, the relationship is shown by year of the number of goals the team scores at home and the number of goals they score playing as visitors. Next to it, in another pie chart named "Gols Contra", the relationship is shown by year of the number of goals the team concedes at home versus the number of goals they concede away from home.
 
+*Maybe the graph will return empty, in which case the selected club was not in the Serie A of the competition.
+
 Used  Datasets ---> https://www.kaggle.com/datasets/adaoduque/campeonato-brasileiro-de-futebol?select=campeonato-brasileiro-cartoes.csv
