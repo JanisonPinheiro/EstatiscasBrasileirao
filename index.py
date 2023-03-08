@@ -5,13 +5,14 @@ from dash.dependencies import Input, Output
 import dash
 import dash_bootstrap_components as dbc
 
-from chutes import *
-from faltas import *
-from gols_pro_contra import *
-from my_app import *
+from shots_ import *
+from fouls_ import *
+from goals_ import *
+
 
 def create_app():
-    my_app = dash.Dash(external_stylesheets=[dbc.themes.CYBORG])
+    my_app = dash.Dash(external_stylesheets=[dbc.themes.CYBORG], assets_folder='assets')
+
     px.defaults.template = 'plotly_dark'
 
     fig = go.Figure()
@@ -27,31 +28,30 @@ def create_app():
             html.H2('Clubes', style={'font-family': 'Voltaire', 'font-size': '20px', 'textAlign': 'center'}),
             html.Hr(),
 
-            dcc.RadioItems(id='clubes',
+            dcc.RadioItems(id='clubs',
                            options=[
-                               {'label': 'Flamengo', 'value': 'Flamengo'},
-                               {'label': 'Santos', 'value': 'Santos'},
-                               {'label': 'Palmeiras', 'value': 'Palmeiras'},
-                               {'label': 'Cruzeiro', 'value': 'Cruzeiro'},
-                               {'label': 'Athletico-PR	', 'value': 'Athletico-PR'},
-
-                               {'label': 'Sport', 'value': 'Sport'},
-                               {'label': 'Avai', 'value': 'Avai'},
-                               {'label': 'Atletico-MG', 'value': 'Atletico-MG'},
-                               {'label': 'Goias', 'value': 'Goias'},
-                               {'label': 'Sao Paulo', 'value': 'Sao Paulo'},
-                               {'label': 'Vasco', 'value': 'Vasco'},
-                               {'label': 'Chapecoense', 'value': 'Chapecoense'},
+                               {'label': 'Athletico-PR', 'value': 'Athletico-PR'},
                                {'label': 'Atletico-GO', 'value': 'Atletico-GO'},
-                               {'label': 'Internacional', 'value': 'Internacional'},
-                               {'label': 'Gremio', 'value': 'Gremio'},
-                               {'label': 'Bragantino', 'value': 'Bragantino'},
+                               {'label': 'Atletico-MG', 'value': 'Atletico-MG'},
+                               {'label': 'Avai', 'value': 'Avai'},
                                {'label': 'Bahia', 'value': 'Bahia'},
-                               {'label': 'Ceara', 'value': 'Ceara'},
                                {'label': 'Botafogo', 'value': 'Botafogo-RJ'},
-                               {'label': 'Fortaleza', 'value': 'Fortaleza'},
+                               {'label': 'Bragantino', 'value': 'Bragantino'},
+                               {'label': 'Ceara', 'value': 'Ceara'},
+                               {'label': 'Chapecoense', 'value': 'Chapecoense'},
                                {'label': 'Corinthians', 'value': 'Corinthians'},
+                               {'label': 'Cruzeiro', 'value': 'Cruzeiro'},
+                               {'label': 'Flamengo', 'value': 'Flamengo'},
                                {'label': 'Fluminense', 'value': 'Fluminense'},
+                               {'label': 'Fortaleza', 'value': 'Fortaleza'},
+                               {'label': 'Goias', 'value': 'Goias'},
+                               {'label': 'Gremio', 'value': 'Gremio'},
+                               {'label': 'Internacional', 'value': 'Internacional'},
+                               {'label': 'Palmeiras', 'value': 'Palmeiras'},
+                               {'label': 'Santos', 'value': 'Santos'},
+                               {'label': 'Sao Paulo', 'value': 'Sao Paulo'},
+                               {'label': 'Sport', 'value': 'Sport'},
+                               {'label': 'Vasco', 'value': 'Vasco'}
 
                            ],
                            value='Flamengo', labelStyle={'display': 'flex', 'margin-right': '10px'},
@@ -67,11 +67,11 @@ def create_app():
                 html.H5('Estatísticas dos últimos 5 anos da Séria A do Campeonato Brasileiro de Futebol'),
                 html.Div('Escolha uma opção de ano:'),
                 dcc.Dropdown(id='dropdown',
-                             options=[{'label': 'Chute no Gol vs Chutes', 'value': 'chutegol_fora'},
-                                      {'label': 'Faltas vs Cartões', 'value': 'faltas_cartoes'},
-                                      {'label': 'Gols Feitos Vs Gols Tomados', 'value': 'gols'}
+                             options=[{'label': 'Chute no Gol vs Chutes', 'value': 'shots'},
+                                      {'label': 'Faltas vs Cartões', 'value': 'fouls'},
+                                      {'label': 'Gols Feitos Vs Gols Tomados', 'value': 'goals'}
                                       ],
-                             value='chutegol_fora',
+                             value='shots',
                              style={'float': 'right',
                                     'width': '50%',
                                     'margin-right': '10px',
@@ -105,33 +105,35 @@ def create_app():
 
                         html.Div([
                             html.P('Produzido por Janíson Pinheiro'),
+
                             html.A(
+                                children=html.Img(
+                                    src='https://live.staticflickr.com/65535/52731851812_b9a309d444_o.png',
+
+                                    alt='linkedin',
+                                    style={'margin-right': '10px'}
+                                    ),
                                 href='https://www.linkedin.com/in/jan%C3%ADson-pinheiro-b20a92237/',
-                                target='_bank',
-                                children=html.Img(src='/assets/linkedin.png',
-
-                                                  alt='Janíson Pinheiro',
-                                                  style={'margin-right': '10px'}
-                                                  )
-
-                            ),
+                                target='_bank'),
 
                             html.A(
                                 href='https://www.instagram.com/janisonpinheiro/',
                                 target='_bank',
-                                children=html.Img(src='/assets/instagram.svg',
+                                children=html.Img(
+                                    src='https://live.staticflickr.com/65535/52731869012_3febae232d_o.png',
 
-                                                  alt='Janíson Pinheiro',
-                                                  style={'margin-right': '10px'}
-                                                  ),
+                                    alt='instagram',
+                                    style={'margin-right': '10px'}
+                                    ),
                             ),
                             html.A(
                                 href='https://github.com/JanisonPinheiro/',
                                 target='_bank',
-                                children=html.Img(src='/assets/git.jpg',
+                                children=html.Img(
+                                    src='https://live.staticflickr.com/65535/52732785625_c4629a07b4_o.png',
 
-                                                  alt='Janíson Pinheiro',
-                                                  style={'margin-right': '10px'}),
+                                    alt='git hub',
+                                    style={'margin-right': '10px'}),
                             ),
                             # html.P('Informação 2', style={'text-align': 'center'})
                         ], style={'text-align': 'center'})
@@ -146,22 +148,23 @@ def create_app():
     @my_app.callback(Output('grafico', 'figure'),
                      [Input('dropdown', 'value'),
                       Input('year', 'value'),
-                      Input('clubes', 'value')
+                      Input('clubs', 'value')
                       ])
-    def update_figure(value, year, clubes):
-        if value == 'chutegol_fora':
-            return update_graph(year, clubes)
-        elif value == 'faltas_cartoes':
-            return update_graph_anti_jogo(year, clubes)
-        elif value == 'gols':
-            return update_graph_gols(year, clubes)
+    def update_figure(value, year, clubs):
+        if value == 'shots':
+            return update_graph(year, clubs)
+        elif value == 'fouls':
+            return update_graph_anti_jogo(year, clubs)
+        elif value == 'goals':
+            return update_graph_goals(year, clubs)
 
     my_app.scripts.config.serve_locally = True
     server = my_app.server
+    if __name__ == '__main__':
+        my_app.run_server(debug=True)
+
     return server
 
 
 app = create_app()
 
-if __name__ == '__main__':
-    my_app.run_server(debug=False)
